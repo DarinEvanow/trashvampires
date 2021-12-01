@@ -10,3 +10,8 @@
 		@apply font-bold;
 	}
 }
+
+@font-face {
+	font-family: 'Roddenberry';
+	src: url('/roddenberry_bold.otf');
+}
