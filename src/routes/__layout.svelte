@@ -1,7 +1,9 @@
 <script lang="ts">
 	import '../app.css';
+
+	import StarTrek from '$lib/StarTrek.svelte';
 </script>
 
 <main>
-	<h1>Hello world!</h1>
+	<StarTrek />
 </main>
