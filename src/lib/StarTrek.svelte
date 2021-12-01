@@ -160,13 +160,6 @@
 		// start animating stars
 		window.requestAnimationFrame(draw);
 	</script>
-
-	<style type="text/css">
-		@font-face {
-			font-family: 'Roddenberry';
-			src: url('static/roddenberry_bold.otf');
-		}
-	</style>
 </body>
 
 <style type="text/css">
