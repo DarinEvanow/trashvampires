@@ -62,13 +62,15 @@
 		var xSpeedModifier = 0.5;
 		var ySpeedModifier = 0;
 		var showTrueColors = false;
-		var showTrueColors = false;
 
 		// moving the mouse across the canves changes x and y speed
 		function followCursor(p) {
 			xSpeedModifier = ((p.pageX - width / 2) / width) * 2;
 			ySpeedModifier = ((p.pageY - height / 2) / height) * 2;
 		}
+
+		document.body.addEventListener('mousemove', followCursor);
+		document.body.addEventListener('touchmove', followCursor);
 
 		// get random element from array
 		getRandomElement = function (arr) {
