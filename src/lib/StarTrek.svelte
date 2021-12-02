@@ -1,9 +1,16 @@
+<script lang="ts">
+	import { Howl } from 'howler';
+</script>
+
 <body>
 	<canvas id="starfield" />
-	<div id="star-trek-logo">TRASH VAMPIRES</div>
+	<div id="main-title">
+		<div id="star-trek-logo">TRASH VAMPIRES</div>
+		<div id="show-venue">THE CHAPEL</div>
+		<div id="show-date">12/10/2021</div>
+	</div>
+
 	<script>
-		// star types and their colors
-		// source: http://www.vendian.org/mncharity/dir3/starcolor/
 		var starTypes = [
 			{
 				type: 'O',
@@ -42,7 +49,11 @@
 			}
 		];
 
-		var engineSound;
+		var song = new Howl({
+			src: ['Tosk.mp3']
+		});
+
+		song.play();
 		var starfield = document.getElementById('starfield');
 		var starTrekLogo = document.getElementById('star-trek-logo');
 		var width = (starfield.width = window.innerWidth);
@@ -60,14 +71,6 @@
 
 		document.body.addEventListener('mousemove', followCursor);
 		document.body.addEventListener('touchmove', followCursor);
-
-		function playSound() {
-			if (!engineSound) engineSound = document.getElementById('enginesound');
-			engineSound.play();
-		}
-
-		document.body.addEventListener('click', playSound);
-		document.body.addEventListener('touchstart', playSound);
 
 		// get random element from array
 		getRandomElement = function (arr) {
@@ -176,6 +179,11 @@
 		left: 0;
 	}
 
+	#main-title {
+		display: flex;
+		flex-direction: column;
+	}
+
 	#starfield {
 		position: absolute;
 		top: 0;
@@ -185,15 +193,51 @@
 		z-index: 1;
 	}
 
+	/*
+	Blue: #38a0e1
+	Gold: #efb200
+	Silver: #aaa9a9
+	*/
+
 	#star-trek-logo {
 		padding: 10px;
 		z-index: 2;
-		color: #38a0e1;
+		color: #efb200;
 		font-size: 80px;
 		font-family: 'Roddenberry', Verdana, Tahoma;
 		text-align: center;
 		cursor: pointer;
 		animation: zoom 0.5s 1 ease-out forwards 5s;
+		animation-fill-mode: both;
+		overflow: visible;
+		user-select: none;
+		transform: scale(100);
+	}
+
+	#show-venue {
+		padding: 10px;
+		z-index: 2;
+		color: #aaa9a9;
+		font-size: 80px;
+		font-family: 'Roddenberry', Verdana, Tahoma;
+		text-align: center;
+		cursor: pointer;
+		animation: zoom 0.5s 1 ease-out forwards 8s;
+		animation-fill-mode: both;
+		overflow: visible;
+		user-select: none;
+		transform: scale(100);
+	}
+
+	#show-date {
+		padding: 10px;
+		z-index: 2;
+		color: #aaa9a9;
+		font-size: 80px;
+		font-family: 'Roddenberry', Verdana, Tahoma;
+		text-align: center;
+		cursor: pointer;
+		animation: zoom 0.5s 1 ease-out forwards 11s;
 		animation-fill-mode: both;
 		overflow: visible;
 		user-select: none;
