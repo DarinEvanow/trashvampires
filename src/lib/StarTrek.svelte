@@ -1,17 +1,9 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { Howl } from 'howler';
-</script>
 
-<body>
-	<canvas id="starfield" />
-	<div id="main-title">
-		<div id="star-trek-logo">TRASH VAMPIRES</div>
-		<div id="show-venue">THE CHAPEL</div>
-		<div id="show-date">12/10/2021</div>
-	</div>
-
-	<script>
-		var starTypes = [
+	onMount(() => {
+		const starTypes = [
 			{
 				type: 'O',
 				trueColor: 'rgb(155, 176, 255)',
@@ -49,19 +41,19 @@
 			}
 		];
 
-		var song = new Howl({
+		const song = new Howl({
 			src: ['Tosk.mp3']
 		});
 
 		song.play();
-		var starfield = document.getElementById('starfield');
-		var starTrekLogo = document.getElementById('star-trek-logo');
-		var width = (starfield.width = window.innerWidth);
-		var height = (starfield.height = window.innerHeight);
-		var numberOfStars = width / 5;
-		var xSpeedModifier = 0.5;
-		var ySpeedModifier = 0;
-		var showTrueColors = false;
+		const starfield: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('starfield');
+		const starTrekLogo = document.getElementById('star-trek-logo');
+		const width = (starfield.width = window.innerWidth);
+		const height = (starfield.height = window.innerHeight);
+		const numberOfStars = width / 5;
+		let xSpeedModifier = 0.5;
+		let ySpeedModifier = 0;
+		let showTrueColors = false;
 
 		// moving the mouse across the canves changes x and y speed
 		function followCursor(p) {
@@ -69,22 +61,27 @@
 			ySpeedModifier = ((p.pageY - height / 2) / height) * 2;
 		}
 
-		document.body.addEventListener('mousemove', followCursor);
-		document.body.addEventListener('touchmove', followCursor);
+		document
+			.getElementById('space-background')
+			.addEventListener('mousemove', followCursor, { capture: true });
+
+		document
+			.getElementById('space-background')
+			.addEventListener('touchmove', followCursor, { capture: true });
 
 		// get random element from array
-		getRandomElement = function (arr) {
+		const getRandomElement = (arr) => {
 			return arr[Math.floor(Math.random() * arr.length)];
 		};
 
 		// create an empty array of stars
-		var stars = [];
+		let stars = [];
 
 		// creates one star
-		function createStar() {
-			var speed = Math.random() * 3.5 + 0.5;
+		const createStar = () => {
+			const speed = Math.random() * 3.5 + 0.5;
 			// get random star type (mainly color/brightness)
-			var starType = getRandomElement(starTypes);
+			const starType = getRandomElement(starTypes);
 			return {
 				trueColor: starType.trueColor,
 				visibleColor: starType.visibleColor,
@@ -94,7 +91,7 @@
 				xSpeed: speed,
 				ySpeed: speed
 			};
-		}
+		};
 
 		// adds one star to array
 		function addStar() {
@@ -103,20 +100,20 @@
 
 		// adds n stars to array
 		function addNStars(n) {
-			for (var i = 0; i < n; i++) addStar();
+			for (let i = 0; i < n; i++) addStar();
 		}
 
 		// generates initial stars
 		addNStars(numberOfStars);
 
 		// clicking on the canvas adds stars
-		function handleStarfieldClick(e) {
+		function handleStarfieldClick(_e: Event) {
 			addNStars(100);
 		}
 
 		// force touch on iPhone also adds stars
-		function handleForceTouch(e) {
-			var force = e.changedTouches[0].force;
+		function handleForceTouch(e: TouchEvent) {
+			const force = e.changedTouches[0].force;
 			if (force >= 1) addNStars(100);
 		}
 
@@ -124,14 +121,14 @@
 		document.body.addEventListener('touchforcechange', handleForceTouch);
 
 		// toggles true color stars (i.e. real colors of stars)
-		function handleLogoClick(e) {
+		function handleLogoClick(e: Event) {
 			e.preventDefault();
 			showTrueColors = !showTrueColors;
 		}
 
 		starTrekLogo.addEventListener('click', handleLogoClick);
 
-		var ctx = starfield.getContext('2d');
+		const ctx = starfield.getContext('2d');
 
 		function draw() {
 			// redraw screen in black with alpha channel for fading of stars
@@ -162,11 +159,20 @@
 
 		// start animating stars
 		window.requestAnimationFrame(draw);
-	</script>
-</body>
+	});
+</script>
+
+<div id="space-background">
+	<canvas id="starfield" />
+	<div id="main-title">
+		<div id="star-trek-logo">TRASH VAMPIRES</div>
+		<div id="show-venue">THE CHAPEL</div>
+		<div id="show-date">12/10/2021</div>
+	</div>
+</div>
 
 <style type="text/css">
-	body {
+	#space-background {
 		margin: 0;
 		background-color: black;
 		display: flex;
