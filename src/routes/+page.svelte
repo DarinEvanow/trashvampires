@@ -27,8 +27,8 @@
 						document.getElementsByTagName('div')[1].style.transitionProperty = 'opacity';
 						document.getElementsByTagName('div')[1].style.transitionDuration = '10s';
 						document.getElementsByTagName('div')[1].style.opacity = '1';
-						document.getElementsByTagName('h1')[0].style.display = 'block';
-						document.getElementsByTagName('h2')[0].style.display = 'block';
+						document.getElementsByTagName('h1')[0].style.display = 'flex';
+						document.getElementsByTagName('h2')[0].style.display = 'flex';
 						document.getElementById('links').style.display = 'flex';
 					}, 7000);
 				})
@@ -49,8 +49,8 @@
 							document.getElementsByTagName('div')[1].style.transitionProperty = 'opacity';
 							document.getElementsByTagName('div')[1].style.transitionDuration = '10s';
 							document.getElementsByTagName('div')[1].style.opacity = '1';
-							document.getElementsByTagName('h1')[0].style.display = 'block';
-							document.getElementsByTagName('h2')[0].style.display = 'block';
+							document.getElementsByTagName('h1')[0].style.display = 'flex';
+							document.getElementsByTagName('h2')[0].style.display = 'flex';
 							document.getElementById('links').style.display = 'flex';
 						}, 7000);
 					});
@@ -93,17 +93,21 @@
 <div id="container">
 	<audio src="atomic_edit.mp3" id="atomic" />
 	<div id="play-button" class="squiggly">&#128264;</div>
-	<h1 class="squiggly">atomic<br />rock<br />beach</h1>
-	<h2 class="squiggly">tape release show: <br />december 17, el rio, 3-8pm</h2>
-	<div id="links" class="squiggly">
-		<a
-			href="https://open.spotify.com/artist/52IYxCUtczp1dXQinQDlxT?si=i-5jUaB4QTu4kxNmkKgBhw"
-			target="_blank"
-			rel="noreferrer">spotify</a
-		>
-		<a href="https://www.instagram.com/trashvampires/" target="_blank" rel="noreferrer">instagram</a
-		>
+	<div id="copy">
+		<h1 class="squiggly">atomic<br />rock<br />beach</h1>
+		<h2 class="squiggly">tape release show: <br />december 17, el rio, 3-8pm</h2>
+		<div id="links" class="squiggly">
+			<a
+				href="https://open.spotify.com/artist/52IYxCUtczp1dXQinQDlxT?si=i-5jUaB4QTu4kxNmkKgBhw"
+				target="_blank"
+				rel="noreferrer">spotify</a
+			>
+			<a href="https://www.instagram.com/trashvampires/" target="_blank" rel="noreferrer"
+				>instagram</a
+			>
+		</div>
 	</div>
+
 	<Canvas />
 </div>
 
@@ -140,14 +144,26 @@
 		width: 100vw;
 	}
 
+	#copy {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+		height: 90vh;
+		width: 100vw;
+		position: absolute;
+	}
+
 	#play-button {
 		display: none;
 		position: absolute;
 		text-align: center;
 		top: 50%;
-		left: 50%;
+		left: 0;
+		right: 0;
 		font-size: 80px;
 		cursor: pointer;
+		z-index: 100;
 	}
 
 	@keyframes squiggly-anim {
@@ -175,18 +191,13 @@
 	.squiggly {
 		animation: squiggly-anim 0.34s linear infinite;
 		opacity: 1;
-		transform: translate(-50%, -50%);
 	}
 	h1 {
 		font-size: 96px;
 		font-family: 'Caveat', cursive;
 		color: white;
 		display: none;
-		position: absolute;
 		text-align: center;
-		top: 30%;
-		left: 50%;
-		flex-direction: column;
 	}
 
 	h2 {
@@ -194,21 +205,14 @@
 		font-family: 'Caveat', cursive;
 		color: white;
 		display: none;
-		position: absolute;
 		text-align: center;
-		top: 70%;
-		left: 50%;
-		flex-direction: column;
 	}
 
 	#links {
 		font-size: 30px;
 		font-family: 'Caveat', cursive;
 		color: white;
-		position: absolute;
 		text-align: center;
-		top: 90%;
-		left: 50%;
 		display: none;
 		flex-direction: row;
 		justify-content: space-around;
