@@ -1,13 +1,15 @@
 <script>
-	import { Canvas } from '@threlte/core';
 	import { onMount } from 'svelte';
+	import { Canvas } from '@threlte/core';
 
 	import SceneManager from '$lib/SceneManager';
+	import { Clock } from 'three';
 
 	onMount(() => {
 		const canvas = document.getElementsByTagName('canvas')[0];
+		const clock = new Clock();
 
-		const sceneManager = new SceneManager(canvas);
+		const sceneManager = new SceneManager(canvas, clock);
 
 		bindEventListeners();
 		render();
@@ -37,6 +39,16 @@
 			requestAnimationFrame(render);
 			sceneManager.update();
 		}
+
+		setTimeout(() => {
+			document.getElementsByTagName('div')[1].style.opacity = '0';
+		}, 2000);
+
+		setTimeout(() => {
+			document.getElementsByTagName('div')[1].style.transitionProperty = 'opacity';
+			document.getElementsByTagName('div')[1].style.transitionDuration = '10s';
+			document.getElementsByTagName('div')[1].style.opacity = '1';
+		}, 2200);
 	});
 </script>
 

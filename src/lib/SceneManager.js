@@ -5,9 +5,7 @@ import Terrain from '$lib/subjects/Terrain';
 import Water from '$lib/subjects/Water';
 import Fish from '$lib/subjects/Fish';
 
-function SceneManager(canvas) {
-	const clock = new THREE.Clock();
-
+function SceneManager(canvas, clock) {
 	const screenDimensions = {
 		width: canvas.width,
 		height: canvas.height
@@ -95,7 +93,7 @@ function SceneManager(canvas) {
 				clock
 			),
 			new Rock(bufferScene),
-			new Fish(bufferScene)
+			new Fish(bufferScene, clock)
 		];
 
 		return sceneSubjects;

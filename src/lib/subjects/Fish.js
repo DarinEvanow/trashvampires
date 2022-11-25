@@ -1,8 +1,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-function Fish(scene) {
-	let fish;
+function Fish(scene, clock) {
 	const mixer = new THREE.AnimationMixer(scene);
 
 	const loader = new GLTFLoader();
@@ -49,6 +48,10 @@ function Fish(scene) {
 
 	this.update = function (deltaTime) {
 		mixer.update(deltaTime);
+
+		if (clock.elapsedTime > 2) {
+			materialObj.color.setColorName('limegreen');
+		}
 	};
 
 	function addMorph(mesh, clip, timeOffset, x, y, z) {
