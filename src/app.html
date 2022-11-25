@@ -2,13 +2,14 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="description" content="" />
-		<link rel="icon" href="/favicon.png" />
-		<link rel="preload" href="/roddenberry_bold.otf" as="font" type="font/otf" crossorigin />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		%svelte.head%
+		<link rel="icon" href="%sveltekit.assets%/favicon.ico" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet" />
+		<meta name="viewport" content="width=device-width" />
+		%sveltekit.head%
 	</head>
-	<body>
-		<div id="svelte">%svelte.body%</div>
+	<body style="margin: 0">
+		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>
