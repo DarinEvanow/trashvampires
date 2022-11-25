@@ -19,6 +19,7 @@
 		"@threlte/extras": "^4.8.0",
 		"@threlte/preprocess": "^0.0.2",
 		"@threlte/rapier": "^0.5.0",
+		"@types/howler": "^2.2.7",
 		"@types/three": "^0.146.0",
 		"@typescript-eslint/eslint-plugin": "^5.27.0",
 		"@typescript-eslint/parser": "^5.27.0",
@@ -39,6 +40,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"howler": "^2.2.3",
 		"simplex-noise": "^4.0.1"
 	}
 }

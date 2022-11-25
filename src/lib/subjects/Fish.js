@@ -49,7 +49,7 @@ function Fish(scene, clock) {
 	this.update = function (deltaTime) {
 		mixer.update(deltaTime);
 
-		if (clock.elapsedTime > 2) {
+		if (clock.elapsedTime > 6.9) {
 			materialObj.color.setColorName('limegreen');
 		}
 	};

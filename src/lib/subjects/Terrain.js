@@ -59,7 +59,7 @@ function Terrain(scene, terrainDimensions, clock) {
 	scene.add(mesh);
 
 	this.update = function (time) {
-		if (clock.elapsedTime > 2) {
+		if (clock.elapsedTime > 6.9) {
 			blueSand.wrapS = THREE.RepeatWrapping;
 			blueSand.wrapT = THREE.RepeatWrapping;
 			blueSand.repeat.set(4, 4);

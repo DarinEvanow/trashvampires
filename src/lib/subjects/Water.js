@@ -42,7 +42,7 @@ function Water(scene, camera, terrainDimensions, screenDimensions, clock) {
 		material.uniforms.tEnv.value = colorTarget.texture;
 		material.uniforms.uTime.value += deltaTime;
 
-		if (clock.elapsedTime > 2) {
+		if (clock.elapsedTime > 6.9) {
 			material.uniforms.waterColor.value = [1.1, 0.463, 0.75, 1];
 			material.uniforms.foamColor.value = [255, 0.85, 255, 0.75];
 		}

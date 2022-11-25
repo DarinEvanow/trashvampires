@@ -1,13 +1,61 @@
 <script>
 	import { onMount } from 'svelte';
+	import { Clock } from 'three';
 	import { Canvas } from '@threlte/core';
+	import { Howl, Howler } from 'howler';
 
 	import SceneManager from '$lib/SceneManager';
-	import { Clock } from 'three';
 
 	onMount(() => {
 		const canvas = document.getElementsByTagName('canvas')[0];
 		const clock = new Clock();
+		clock.stop();
+		let promise = document.getElementById('atomic').play();
+
+		if (promise !== undefined) {
+			promise
+				.then((_) => {
+					clock.start();
+					const playButton = document.getElementById('play-button');
+					playButton.style.display = 'none';
+
+					setTimeout(() => {
+						document.getElementsByTagName('div')[1].style.opacity = '0';
+					}, 6800);
+
+					setTimeout(() => {
+						document.getElementsByTagName('div')[1].style.transitionProperty = 'opacity';
+						document.getElementsByTagName('div')[1].style.transitionDuration = '10s';
+						document.getElementsByTagName('div')[1].style.opacity = '1';
+						document.getElementsByTagName('h1')[0].style.display = 'block';
+						document.getElementsByTagName('h2')[0].style.display = 'block';
+						document.getElementById('links').style.display = 'flex';
+					}, 7000);
+				})
+				.catch((error) => {
+					const playButton = document.getElementById('play-button');
+					playButton.style.display = 'block';
+					console.log('testing');
+					playButton?.addEventListener('click', () => {
+						document.getElementById('atomic').play();
+						playButton.style.display = 'none';
+						clock.start();
+
+						setTimeout(() => {
+							document.getElementsByTagName('div')[1].style.opacity = '0';
+						}, 6800);
+
+						setTimeout(() => {
+							document.getElementsByTagName('div')[1].style.transitionProperty = 'opacity';
+							document.getElementsByTagName('div')[1].style.transitionDuration = '10s';
+							document.getElementsByTagName('div')[1].style.opacity = '1';
+							document.getElementsByTagName('h1')[0].style.display = 'block';
+							document.getElementsByTagName('h2')[0].style.display = 'block';
+							document.getElementById('links').style.display = 'flex';
+						}, 7000);
+					});
+				});
+		}
 
 		const sceneManager = new SceneManager(canvas, clock);
 
@@ -39,23 +87,12 @@
 			requestAnimationFrame(render);
 			sceneManager.update();
 		}
-
-		setTimeout(() => {
-			document.getElementsByTagName('div')[1].style.opacity = '0';
-		}, 2000);
-
-		setTimeout(() => {
-			document.getElementsByTagName('div')[1].style.transitionProperty = 'opacity';
-			document.getElementsByTagName('div')[1].style.transitionDuration = '10s';
-			document.getElementsByTagName('div')[1].style.opacity = '1';
-			document.getElementsByTagName('h1')[0].style.display = 'block';
-			document.getElementsByTagName('h2')[0].style.display = 'block';
-			document.getElementById('links').style.display = 'flex';
-		}, 2200);
 	});
 </script>
 
 <div id="container">
+	<audio src="atomic_edit.mp3" id="atomic" />
+	<div id="play-button" class="squiggly">&#128264;</div>
 	<h1 class="squiggly">atomic<br />rock<br />beach</h1>
 	<h2 class="squiggly">tape release show: <br />december 17, el rio, 3-8pm</h2>
 	<div id="links" class="squiggly">
@@ -101,6 +138,16 @@
 	#container {
 		height: 100vh;
 		width: 100vw;
+	}
+
+	#play-button {
+		display: none;
+		position: absolute;
+		text-align: center;
+		top: 50%;
+		left: 50%;
+		font-size: 80px;
+		cursor: pointer;
 	}
 
 	@keyframes squiggly-anim {
