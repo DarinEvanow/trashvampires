@@ -59,10 +59,13 @@
 	<h1 class="squiggly">atomic<br />rock<br />beach</h1>
 	<h2 class="squiggly">tape release show: <br />december 17, el rio, 3-8pm</h2>
 	<div id="links" class="squiggly">
-		<a href="https://open.spotify.com/artist/52IYxCUtczp1dXQinQDlxT?si=i-5jUaB4QTu4kxNmkKgBhw"
-			>spotify</a
+		<a
+			href="https://open.spotify.com/artist/52IYxCUtczp1dXQinQDlxT?si=i-5jUaB4QTu4kxNmkKgBhw"
+			target="_blank"
+			rel="noreferrer">spotify</a
 		>
-		<a href="https://www.instagram.com">instagram</a>
+		<a href="https://www.instagram.com/trashvampires/" target="_blank" rel="noreferrer">instagram</a
+		>
 	</div>
 	<Canvas />
 </div>
@@ -162,7 +165,7 @@
 		display: none;
 		flex-direction: row;
 		justify-content: space-around;
-		width: 200px;
+		width: 280px;
 	}
 
 	a {
