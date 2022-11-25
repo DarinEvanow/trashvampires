@@ -8,7 +8,6 @@
 	onMount(() => {
 		const canvas = document.getElementsByTagName('canvas')[0];
 		const clock = new Clock();
-		// clock.stop();
 
 		const sceneManager = new SceneManager(canvas, clock);
 
@@ -49,13 +48,22 @@
 			document.getElementsByTagName('div')[1].style.transitionProperty = 'opacity';
 			document.getElementsByTagName('div')[1].style.transitionDuration = '10s';
 			document.getElementsByTagName('div')[1].style.opacity = '1';
-			document.getElementsByTagName('h1')[0].style.display = 'initial';
+			document.getElementsByTagName('h1')[0].style.display = 'block';
+			document.getElementsByTagName('h2')[0].style.display = 'block';
+			document.getElementById('links').style.display = 'flex';
 		}, 2200);
 	});
 </script>
 
-<div>
-	<h1 class="squiggly">Atomic<br />Rock<br />Beach</h1>
+<div id="container">
+	<h1 class="squiggly">atomic<br />rock<br />beach</h1>
+	<h2 class="squiggly">tape release show: <br />december 17, el rio, 3-8pm</h2>
+	<div id="links" class="squiggly">
+		<a href="https://open.spotify.com/artist/52IYxCUtczp1dXQinQDlxT?si=i-5jUaB4QTu4kxNmkKgBhw"
+			>spotify</a
+		>
+		<a href="https://www.instagram.com">instagram</a>
+	</div>
 	<Canvas />
 </div>
 
@@ -87,7 +95,7 @@
 </svg>
 
 <style>
-	div {
+	#container {
 		height: 100vh;
 		width: 100vw;
 	}
@@ -117,17 +125,48 @@
 	.squiggly {
 		animation: squiggly-anim 0.34s linear infinite;
 		opacity: 1;
-		position: absolute;
-		text-align: center;
-		top: 50%;
-		left: 50%;
 		transform: translate(-50%, -50%);
 	}
-
 	h1 {
-		font-size: 80px;
+		font-size: 96px;
+		font-family: 'Caveat', cursive;
 		color: white;
 		display: none;
+		position: absolute;
+		text-align: center;
+		top: 30%;
+		left: 50%;
+		flex-direction: column;
+	}
+
+	h2 {
+		font-size: 40px;
+		font-family: 'Caveat', cursive;
+		color: white;
+		display: none;
+		position: absolute;
+		text-align: center;
+		top: 70%;
+		left: 50%;
+		flex-direction: column;
+	}
+
+	#links {
+		font-size: 30px;
+		font-family: 'Caveat', cursive;
+		color: white;
+		position: absolute;
+		text-align: center;
+		top: 90%;
+		left: 50%;
+		display: none;
+		flex-direction: row;
+		justify-content: space-around;
+		width: 200px;
+	}
+
+	a {
+		color: inherit;
 	}
 
 	svg {
