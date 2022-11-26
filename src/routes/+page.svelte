@@ -3,24 +3,50 @@
 	import { Clock } from 'three';
 	import { Canvas } from '@threlte/core';
 
-	import Audio, { playAudio } from '$lib/Audio.svelte';
+	import Audio, { playAudio, audioTriggered } from '$lib/Audio.svelte';
 	import Copy from '$lib/Copy.svelte';
 	import SceneManager from '$lib/SceneManager';
-	import { bindEventListeners } from '$lib/utils/eventListeners';
 
 	onMount(() => {
-		const canvas = document.getElementsByTagName('canvas')[0];
-		const clock = new Clock();
-		clock.stop();
-		playAudio(clock);
+		let audioTriggeredValue;
 
-		const sceneManager = new SceneManager(canvas, clock);
-		bindEventListeners(canvas, sceneManager);
+		audioTriggered.subscribe((value) => {
+			audioTriggeredValue = value;
+		});
+
+		const canvas = document.getElementsByTagName('canvas')[0];
+		const sceneClock = new Clock();
+		const audioClock = new Clock(false);
+		playAudio(audioClock, sceneClock);
+
+		const sceneManager = new SceneManager(canvas, sceneClock);
+		bindEventListeners();
 		render();
+
+		function bindEventListeners() {
+			window.onresize = resizeCanvas;
+			document.addEventListener('touchmove', (e) => {
+				sceneManager.onDocumentMouseMove(e.touches[0]);
+			});
+			document.addEventListener('mousemove', (e) => {
+				sceneManager.onDocumentMouseMove(e);
+			});
+			resizeCanvas();
+		}
+
+		function resizeCanvas() {
+			canvas.style.width = '100%';
+			canvas.style.height = '100%';
+
+			canvas.width = canvas.offsetWidth;
+			canvas.height = canvas.offsetHeight;
+
+			sceneManager.onWindowResize();
+		}
 
 		function render() {
 			requestAnimationFrame(render);
-			sceneManager.update();
+			sceneManager.update(audioTriggeredValue);
 		}
 	});
 </script>

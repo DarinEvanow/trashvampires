@@ -125,8 +125,7 @@ function SceneManager(canvas, clock) {
 		return { colorTarget, depthTarget };
 	}
 
-	this.update = function () {
-		// const elapsedTime = clock.getElapsedTime();
+	this.update = function (audioTriggered) {
 		const deltaTime = clock.getDelta();
 
 		camera.position.x += (mouseX - camera.position.x) * 0.05;
@@ -137,7 +136,7 @@ function SceneManager(canvas, clock) {
 		renderer.clear();
 
 		for (let i = 0; i < sceneSubjects.length; i++) {
-			sceneSubjects[i].update(deltaTime, colorTarget, depthTarget);
+			sceneSubjects[i].update(deltaTime, colorTarget, depthTarget, audioTriggered);
 		}
 
 		renderer.setRenderTarget(colorTarget);

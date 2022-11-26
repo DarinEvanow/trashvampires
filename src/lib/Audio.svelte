@@ -1,17 +1,22 @@
 <script context="module">
 	import { triggerFlash } from '$lib/utils/flash';
+	import { writable } from 'svelte/store';
 
-	export function playAudio(clock) {
+	export const audioTriggered = writable(false);
+
+	export function playAudio(audioClock, sceneClock) {
 		let promise = document.getElementById('atomic').play();
 
 		if (promise !== undefined) {
 			promise
 				.then(() => {
-					clock.start();
+					audioClock.start();
+					sceneClock.start();
 					const playButton = document.getElementById('play-button');
 					playButton.style.display = 'none';
+					audioTriggered.update(() => true);
 
-					triggerFlash(clock);
+					triggerFlash();
 				})
 				.catch(() => {
 					const playButton = document.getElementById('play-button');
@@ -19,9 +24,11 @@
 					playButton?.addEventListener('click', () => {
 						document.getElementById('atomic').play();
 						playButton.style.display = 'none';
-						clock.start();
+						audioClock.start();
+						sceneClock.start();
+						audioTriggered.update(() => true);
 
-						triggerFlash(clock);
+						triggerFlash();
 					});
 				});
 		}

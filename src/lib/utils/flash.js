@@ -1,4 +1,4 @@
-export function triggerFlash(clock) {
+export function triggerFlash() {
 	setTimeout(() => {
 		document.getElementsByTagName('div')[1].style.opacity = '0';
 	}, 6800);
