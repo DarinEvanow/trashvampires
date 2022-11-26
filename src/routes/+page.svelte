@@ -2,7 +2,6 @@
 	import { onMount } from 'svelte';
 	import { Clock } from 'three';
 	import { Canvas } from '@threlte/core';
-	import { Howl, Howler } from 'howler';
 
 	import SceneManager from '$lib/SceneManager';
 
@@ -98,9 +97,9 @@
 		<h2 class="squiggly">tape release show: <br />december 17, el rio, 3-8pm</h2>
 		<div id="links" class="squiggly">
 			<a
-				href="https://open.spotify.com/artist/52IYxCUtczp1dXQinQDlxT?si=i-5jUaB4QTu4kxNmkKgBhw"
+				href="https://trashvampires.bandcamp.com/album/atomic-rock-beach"
 				target="_blank"
-				rel="noreferrer">spotify</a
+				rel="noreferrer">bandcamp</a
 			>
 			<a href="https://www.instagram.com/trashvampires/" target="_blank" rel="noreferrer"
 				>instagram</a
@@ -149,7 +148,7 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: space-around;
-		height: 90vh;
+		height: 85vh;
 		width: 100vw;
 		position: absolute;
 	}
@@ -201,7 +200,7 @@
 	}
 
 	h2 {
-		font-size: 40px;
+		font-size: 36px;
 		font-family: 'Caveat', cursive;
 		color: white;
 		display: none;

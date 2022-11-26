@@ -40,7 +40,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"howler": "^2.2.3",
 		"simplex-noise": "^4.0.1"
 	}
 }
