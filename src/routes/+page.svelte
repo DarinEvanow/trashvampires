@@ -15,11 +15,10 @@
 		});
 
 		const canvas = document.getElementsByTagName('canvas')[0];
-		const sceneClock = new Clock();
-		const audioClock = new Clock(false);
-		playAudio(audioClock, sceneClock);
+		const clock = new Clock();
+		playAudio(clock);
 
-		const sceneManager = new SceneManager(canvas, sceneClock);
+		const sceneManager = new SceneManager(canvas, clock);
 		bindEventListeners();
 		render();
 

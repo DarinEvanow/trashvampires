@@ -4,14 +4,13 @@
 
 	export const audioTriggered = writable(false);
 
-	export function playAudio(audioClock, sceneClock) {
+	export function playAudio(clock) {
 		let promise = document.getElementById('atomic').play();
 
 		if (promise !== undefined) {
 			promise
 				.then(() => {
-					audioClock.start();
-					sceneClock.start();
+					clock.start();
 					const playButton = document.getElementById('play-button');
 					playButton.style.display = 'none';
 					audioTriggered.update(() => true);
@@ -24,8 +23,7 @@
 					playButton?.addEventListener('click', () => {
 						document.getElementById('atomic').play();
 						playButton.style.display = 'none';
-						audioClock.start();
-						sceneClock.start();
+						clock.start();
 						audioTriggered.update(() => true);
 
 						triggerFlash();
