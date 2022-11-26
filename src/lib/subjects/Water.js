@@ -37,12 +37,12 @@ function Water(scene, camera, terrainDimensions, screenDimensions, clock) {
 
 	scene.add(mesh);
 
-	this.update = function (deltaTime, colorTarget, depthTarget) {
+	this.update = function (deltaTime, colorTarget, depthTarget, audioTriggered) {
 		material.uniforms.tDepth.value = depthTarget.texture;
 		material.uniforms.tEnv.value = colorTarget.texture;
 		material.uniforms.uTime.value += deltaTime;
 
-		if (clock.elapsedTime > 6.9) {
+		if (clock.elapsedTime > 6.9 && audioTriggered) {
 			material.uniforms.waterColor.value = [1.1, 0.463, 0.75, 1];
 			material.uniforms.foamColor.value = [255, 0.85, 255, 0.75];
 		}

@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-function Fish(scene, clock) {
+function Fish(scene, clock, audioTriggered) {
 	const mixer = new THREE.AnimationMixer(scene);
 
 	const loader = new GLTFLoader();
@@ -46,10 +46,10 @@ function Fish(scene, clock) {
 		addMorph(mesh, clip, 0.8, 12, -2, 15);
 	});
 
-	this.update = function (deltaTime) {
+	this.update = function (deltaTime, colorTarget, depthTarget, audioTriggered) {
 		mixer.update(deltaTime);
 
-		if (clock.elapsedTime > 6.9) {
+		if (clock.elapsedTime > 6.9 && audioTriggered) {
 			materialObj.color.setColorName('limegreen');
 		}
 	};
