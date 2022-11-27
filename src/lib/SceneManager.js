@@ -39,7 +39,6 @@ function SceneManager(canvas, clock) {
 
 	function buildScene() {
 		const scene = new THREE.Scene();
-		// scene.background = new THREE.Color('#000');
 
 		return scene;
 	}
@@ -125,7 +124,7 @@ function SceneManager(canvas, clock) {
 		return { colorTarget, depthTarget };
 	}
 
-	this.update = function (audioTriggered) {
+	this.update = function (audioPlayTime) {
 		const deltaTime = clock.getDelta();
 
 		camera.position.x += (mouseX - camera.position.x) * 0.05;
@@ -136,7 +135,7 @@ function SceneManager(canvas, clock) {
 		renderer.clear();
 
 		for (let i = 0; i < sceneSubjects.length; i++) {
-			sceneSubjects[i].update(deltaTime, colorTarget, depthTarget, audioTriggered);
+			sceneSubjects[i].update(deltaTime, colorTarget, depthTarget, audioPlayTime);
 		}
 
 		renderer.setRenderTarget(colorTarget);
