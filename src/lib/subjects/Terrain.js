@@ -58,8 +58,8 @@ function Terrain(scene, terrainDimensions, clock) {
 
 	scene.add(mesh);
 
-	this.update = function (deltaTime, colorTarget, depthTarget, audioTriggered) {
-		if (clock.elapsedTime > 6.9 && audioTriggered) {
+	this.update = function (deltaTime, colorTarget, depthTarget, audioPlayTime, flashTriggered) {
+		if (audioPlayTime > 6.8) {
 			blueSand.wrapS = THREE.RepeatWrapping;
 			blueSand.wrapT = THREE.RepeatWrapping;
 			blueSand.repeat.set(4, 4);

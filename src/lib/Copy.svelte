@@ -1,7 +1,9 @@
 <script>
 </script>
 
-<div id="play-button" class="squiggly">&#128264;</div>
+<div id="play-button-container">
+	<div id="play-button" class="squiggly">&#128264;</div>
+</div>
 <div id="copy">
 	<h1 class="squiggly">atomic<br />rock<br />beach</h1>
 	<h2 class="squiggly">tape release show: <br />december 17, el rio, 3-8pm</h2>
@@ -54,13 +56,16 @@
 		position: absolute;
 	}
 
+	#play-button-container {
+		display: flex;
+		position: absolute;
+		top: 50%;
+		width: 100vw;
+		justify-content: center;
+	}
+
 	#play-button {
 		display: none;
-		position: absolute;
-		text-align: center;
-		top: 50%;
-		left: 0;
-		right: 0;
 		font-size: 80px;
 		cursor: pointer;
 		z-index: 100;

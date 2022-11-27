@@ -3,20 +3,27 @@
 	import { Clock } from 'three';
 	import { Canvas } from '@threlte/core';
 
-	import Audio, { playAudio, audioTriggered } from '$lib/Audio.svelte';
+	import Audio, { playAudio, audioPlayTime } from '$lib/Audio.svelte';
+	import { triggerFlash, flashTriggered } from '$lib/utils/flash';
 	import Copy from '$lib/Copy.svelte';
 	import SceneManager from '$lib/SceneManager';
 
 	onMount(() => {
-		let audioTriggeredValue;
+		let audioPlayTimeValue;
+		let flashTriggeredValue;
+		const audio = document.getElementById('atomic');
 
-		audioTriggered.subscribe((value) => {
-			audioTriggeredValue = value;
+		audioPlayTime.subscribe((value) => {
+			audioPlayTimeValue = value;
+		});
+
+		flashTriggered.subscribe((value) => {
+			flashTriggeredValue = value;
 		});
 
 		const canvas = document.getElementsByTagName('canvas')[0];
 		const clock = new Clock();
-		playAudio(clock);
+		playAudio();
 
 		const sceneManager = new SceneManager(canvas, clock);
 		bindEventListeners();
@@ -45,7 +52,9 @@
 
 		function render() {
 			requestAnimationFrame(render);
-			sceneManager.update(audioTriggeredValue);
+			triggerFlash(audioPlayTimeValue, flashTriggeredValue);
+			audioPlayTime.update(() => audio.currentTime);
+			sceneManager.update(audioPlayTimeValue);
 		}
 	});
 </script>

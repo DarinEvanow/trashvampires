@@ -46,10 +46,10 @@ function Fish(scene, clock, audioTriggered) {
 		addMorph(mesh, clip, 0.8, 12, -2, 15);
 	});
 
-	this.update = function (deltaTime, colorTarget, depthTarget, audioTriggered) {
+	this.update = function (deltaTime, colorTarget, depthTarget, audioPlayTime) {
 		mixer.update(deltaTime);
 
-		if (clock.elapsedTime > 6.9 && audioTriggered) {
+		if (audioPlayTime > 6.8) {
 			materialObj.color.setColorName('limegreen');
 		}
 	};
