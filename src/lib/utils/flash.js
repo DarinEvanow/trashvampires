@@ -3,7 +3,7 @@ import { writable } from 'svelte/store';
 export const flashTriggered = writable(false);
 
 export function triggerFlash(audioPlayTime, flashTriggeredValue) {
-	if (audioPlayTime > 6.6 && !flashTriggeredValue) {
+	if (audioPlayTime >= 6.5 && !flashTriggeredValue) {
 		flashTriggered.update(() => true);
 		document.getElementsByTagName('div')[1].style.opacity = '0';
 
