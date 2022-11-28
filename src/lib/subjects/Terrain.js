@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { createNoise2D } from 'simplex-noise';
-import { default as vert } from '../shaders/SandVert.glsl?raw';
-import { default as frag } from '../shaders/SandFrag.glsl?raw';
+import vert from '../shaders/Sand.vert?raw';
+import frag from '../shaders/Sand.frag?raw';
 
 function Terrain(scene, terrainDimensions, clock) {
 	const sand = new THREE.TextureLoader().load('/images/sand.png');
@@ -24,7 +24,8 @@ function Terrain(scene, terrainDimensions, clock) {
 				transparent: true,
 				vertexShader: vert,
 				fragmentShader: frag,
-				uniforms: THREE.ShaderLib.phong.uniforms
+				uniforms: THREE.ShaderLib.phong.uniforms,
+				glslVersion: THREE.GLSL3
 			}),
 			sandMaterial
 		]
@@ -50,7 +51,6 @@ function Terrain(scene, terrainDimensions, clock) {
 
 	mesh.rotation.x = -Math.PI / 2.3;
 
-	// mesh.castShadow = true;
 	mesh.receiveShadow = true;
 
 	mesh.matrixAutoUpdate = false;

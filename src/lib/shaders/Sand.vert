@@ -1,4 +1,3 @@
-
 varying vec4 WorldPosition;
 
 #include <common>

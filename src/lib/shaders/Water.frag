@@ -1,4 +1,3 @@
-
 #include <packing>
 
 varying vec4 WorldPosition;
@@ -13,13 +12,10 @@ uniform float cameraFar;
 uniform vec4 waterColor;
 uniform vec4 foamColor;
 
-
 float linearizeDepth(float z) {
   float viewZ = perspectiveDepthToViewZ( z, cameraNear, cameraFar );
-  // return viewZToOrthographicDepth( viewZ, cameraNear, cameraFar );
   return viewZ;
 }
-
 
 float getScreenDepth(vec2 uv) {
   float depth = unpackRGBAToDepth(texture2D(tDepth, uv));
@@ -39,8 +35,6 @@ void main() {
 
   vec4 color = texture2D(tEnv, uv / screenSize);
 
-
-  
   float worldDepth = getLinearDepth(WorldPosition.xyz);
   float screenDepth = getScreenDepth(gl_FragCoord.xy / screenSize);
   float offsetScreenDepth = getScreenDepth(uv / screenSize);

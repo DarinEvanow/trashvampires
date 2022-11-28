@@ -12,8 +12,6 @@ function SceneManager(canvas, clock) {
 	};
 
 	const DPR = window.devicePixelRatio ? Math.min(window.devicePixelRatio, 2) : 1;
-	// const DPR = 1;
-
 	const camParams = {
 		default: [100, 100, 100],
 		range: [60, 60],
@@ -50,7 +48,6 @@ function SceneManager(canvas, clock) {
 			alpha: true,
 			depth: true,
 			stencil: false
-			// precision: 'mediump',
 		});
 
 		renderer.setPixelRatio(DPR);
@@ -166,7 +163,6 @@ function SceneManager(canvas, clock) {
 
 		renderer.setSize(width, height);
 		const dpr = Math.min(renderer.getPixelRatio(), 2);
-		// const dpr = 1;
 		depthTarget.setSize(width * dpr, height * dpr);
 		colorTarget.setSize(width * dpr, height * dpr);
 
