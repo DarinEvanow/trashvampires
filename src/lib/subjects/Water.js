@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import { default as frag } from '../shaders/WaterFrag.glsl?raw';
-import { default as vert } from '../shaders/WaterVert.glsl?raw';
+import frag from '../shaders/Water.frag?raw';
+import vert from '../shaders/Water.vert?raw';
 
 function Water(scene, camera, terrainDimensions, screenDimensions, clock) {
 	const material = new THREE.ShaderMaterial({
