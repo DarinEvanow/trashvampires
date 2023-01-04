@@ -6,7 +6,7 @@
 </div>
 <div id="copy">
 	<h1 class="squiggly">atomic<br />rock<br />beach</h1>
-	<h2 class="squiggly">tape release show: <br />december 17, el rio, 3-8pm</h2>
+	<h2 class="squiggly">new album by<br />trash vampires</h2>
 	<div id="links" class="squiggly">
 		<a
 			href="https://trashvampires.bandcamp.com/album/atomic-rock-beach"
